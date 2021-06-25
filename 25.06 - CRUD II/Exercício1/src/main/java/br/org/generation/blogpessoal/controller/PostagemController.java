@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.generation.blogpessoal.model.PostagemModel;
 import br.org.generation.blogpessoal.repository.PostagemRepository;
 
+//Métodos CRUD
+
 @RestController
 @RequestMapping("/postagem")
 @CrossOrigin("*")
