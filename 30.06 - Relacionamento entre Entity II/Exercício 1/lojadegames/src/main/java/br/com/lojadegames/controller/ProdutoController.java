@@ -1,6 +1,7 @@
 package br.com.lojadegames.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.lojadegames.model.ProdutoModel;
 import br.com.lojadegames.repository.ProdutoRepository;
@@ -55,6 +57,13 @@ public class ProdutoController {
 	
 	@DeleteMapping("/{id}")
 	public void delete (@PathVariable long id) {
-		repository.deleteById(id);
+		Optional<ProdutoModel> produto = repository.findById(id);
+		
+		if (produto.isPresent()) {
+			repository.deleteById(id);
+		}
+		else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "O ID digitado não existe!");
+		}
 	}
 }

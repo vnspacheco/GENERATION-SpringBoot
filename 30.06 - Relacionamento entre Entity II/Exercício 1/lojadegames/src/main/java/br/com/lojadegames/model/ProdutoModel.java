@@ -42,4 +42,12 @@ public class ProdutoModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
 }
